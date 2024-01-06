@@ -33,6 +33,14 @@ router.get('/', function(req, res, next) {
   next();
 }, function(req, res, next) {
   res.locals.filter = null;
+
+  console.log(req);
+  console.log(req.user);
+  // for suitable both raw google OCID & auth0
+  if (typeof req.user.name !== 'string') {
+    req.user.name = req.user.name['givenName'] + req.user.name['familyName'];
+  }
+
   res.render('index', { user: req.user });
 });
 
