@@ -37,6 +37,7 @@ router.get('/', function(req, res, next) {
   console.log(req);
   console.log(req.user);
   // for suitable both raw google OCID & auth0
+  // TODO: fix behavior of auth0 login with email & password
   if (typeof req.user.name !== 'string') {
     req.user.name = req.user.name['givenName'] + req.user.name['familyName'];
   }
